@@ -12,7 +12,12 @@ pipeline {
 	stages {
 		stage('Checkout') {
 			steps {
-				git 'https://github.com/artibhoir369/sample-node-app.git'
+				script {
+					checkout([$class: 'GitSCM',
+						branches: [[name: '*/main']],
+						userRemoteConfigs: [[url: 'https://github.com/artibhoir369/sample-node-app.git']]
+					])
+				}
 			}
 		}
 	}
