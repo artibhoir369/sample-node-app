@@ -56,7 +56,7 @@ pipeline {
     }
 
     post {
-        always {
+        failure {
             // Clean up Docker containers
             script {
                 sh """
