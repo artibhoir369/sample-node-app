@@ -25,7 +25,7 @@ pipeline {
 			steps {
 				script {
 					echo "Building Docker Image ${DOCKER_IMAGE}"
-					docker.build(DOCKER_IMAGE)
+					sh 'docker build -t sample-node-app .'
 					}
 				}
 			}
@@ -33,7 +33,7 @@ pipeline {
 		stage('Run Docker Container') {
 			steps {
 				script {
-					docker.image(DOCKER_IMAGE).run('-d -p 3000:3000')
+					sh 'docker run -d --name sample-node-app-container -p 3000:3000 sample-node-app'
 					}
 				}
 			}
