@@ -20,5 +20,14 @@ pipeline {
 				}
 			}
 		}
+		
+		stage('Build Docker Image') {
+			steps {
+				script {
+					echo "Building Docker Image ${DOCKER_IMAGE}"
+					docker.build(DOCKER_IMAGE)
+					}
+				}
+			}
 	}
 }
